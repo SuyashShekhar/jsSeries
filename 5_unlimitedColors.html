@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Number Guessing Game</title>
+   
+  </head>
+  <body style="background-color: #212121; color: #fff">
+
+    <h1>Start should change the Background color every second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    //create random color
+    // we have hex value start from 0 to F
+    // for color we need random 6 digits from 0 to F
+    function generateRandomColor (){ 
+        const hex = "0123456789ABCDEF"
+        let randomColor="#";
+        for(let i =1; i<=6; i++){
+             randomColor = randomColor + hex[Math.floor(Math.random()*15)];  // generate value from 0-15, hex[value] gives that character 
+        }
+        console.log(randomColor)
+        document.body.style.backgroundColor = randomColor;
+    }
+       
+
+    // start changing bg color
+    let setIntervalref;
+    document.querySelector("#start").addEventListener('click',function(){
+        // setIntervalref = setInterval(generateRandomColor,1000); 
+        // it is correct but to write clean code we write code like this as shown below. Which means if setIntervalref
+        // value is null then only run code
+        if(setIntervalref == null){
+            setIntervalref = setInterval(generateRandomColor,1000);
+        }
+    })
+
+
+    //stop changing bg color
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearInterval(setIntervalref);
+        setIntervalref = null; // when we stop then clear the value and set to null
+    })
+
+    // if we comment line 37,39,46 then also it works properly but to write proffessional code we have to clear 
+    // the value before rewriting or reassining the value
+    
+
+   
+  </script>
+</html>
